@@ -15,6 +15,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+# from google.oauth2 import service_account
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "skillful-radar-387911.nw.r.appspot.com"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -177,3 +179,24 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/userinfo.profile',
 ]
+
+
+# STORAGES = {"default": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"}}
+
+# GS_BUCKET_NAME = 'app-engine-static-files'
+
+
+
+# GS_CREDENTIALS = service_account.Credentials.from_service_account_file({
+#   "type": "service_account",
+#   "project_id": "skillful-radar-387911",
+#   "private_key_id": "866f6cd9dba0303780945bccdc0acc0500f3df4e",
+#   "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCnN5IJJVAQYavz\na5dfYiBAqY2mX3D4tiFDG14dzugCCMazHia2NATUBewor7rZGlb0KyNkGrCMDqsW\n1DWfVELmO9B+EZFfSDed+cwSU6ESgQ5gbq7HJgleXOef3BdPdPrp0CV5gawRWfJP\nyVBfDWV9ydATnpBZs2T9glpQqWYAfbPjai+Bhwc7VBPWSgqun4fYVzUrgEhdNzZ7\n4JMDVr8M5cicrx3lpNrcPtlXghTCDTrr+vgeklTKDLKb4QG6I7fzvJ+8Vg5AOW0B\n759n9TqRRj6GwjxvsRk7+Y1UUYl+dbXiPWxqc+UGNZtFri7W9DV7UbGVP9UR5ISY\ny7vrqVhlAgMBAAECggEADYe2u8xhRZS5m+56kZUNhLM+IGum5vZJtmCFBYbD3sJE\nsvfqFvfE5Oj+b65ZwTkF4dI0a2RTdl8LeJiUJtUOaAsH9uNyA/0tGY29oEVUX6cX\nTuCLKNcK5AVCwqca2xWH5e+vJeftpdEa2low3s1lMb/ozmWX9YIeq6U8AecrDI1S\n/f73SnJPTe5ExIs5vAN1FGu0YFJBRF3LXFYL4szdDMZbfn7+W2jY5mRiOuNk+MyG\nt3Z/D1KX1nMJYSzNtlTxvRYhmgiYwsI+fL9DVzkisS/yeSTrsIxlc4fKDe2groQG\ndgie1ezimh27/nIwCNjJwo27oNjdeQEwZZEh2wYCQQKBgQDibgWyCEHq0BQ8Jgm8\nFx5eYGUt9LRq5qlxIbNEKhJjt1Zyrqg+ld2InbUyZiSQo0H9rOauNVg+5GdcwEUc\niCoN9qLeyKkr/CZxCpKdJerRok9OcsXlqeahXvyteoEdLjVgVjtlCvOzlPgskqNb\nzpxVrYCGm/lfGJs7dsc185qKhQKBgQC9DfR73FXuYEd16AKpPiTxLzxoQ4jvIFRq\nf5huEQvI0VQB6Y/YwDIXz4VuG9ec8OIpXX+9+8gbJBjWC3UzDMl9OBu5VRY9f6N4\ngLylxQwH/t91t8qjgknqxZo+Buc8fTXiLinQiYnfBNgMHnSx2WMiLNUwrKth9BrZ\nThmyNNwsYQKBgHBl1QXu+2moKKNC7oojn7uRdig91GFMZsf1xpsLl11QYOVEtdd7\nZSCvyIZgFb6Gi/d0oH3RlSCDGJv+BVCIdve/elHEodVnsV1jtiuz6sBtJZj3eCzt\nDcME98DVksn9ahmMNKePrDF0vUzC7bxg71HIcohfXIZMHKKD75dkeU5RAoGBALCY\ncoGopdRPtzDaEnJJDHUGrKSwQR8t0ezRV2+pGJrzfkdzBt1vWtuHC5p5A4UkNf5x\nyjuLD7balyCJ/2Y6UZRYbv1GD8pOikKr7oviboShfdcWYYEu2SEmiBfclu+X/ldS\ny9hyQYlDmxRm9paS+9kWi+Y1xLlxLgtCuxoN6oTBAoGADN0bfLlBiMt7QB00qoKu\n2vYhIiuj5rmTMLUi/Yp2aAj1EGjxDBvbKCV2ZoEAM9ILIVaGE1O0vYOe9MyznS2+\nacXER54Mrrd+ctq91w9hLT8SiOQOlKTc4CXDRIncLu5vqo/cXzmTtxU29zglyxXo\n7p6aX6povM5gb8Dc/lYlqfQ=\n-----END PRIVATE KEY-----\n",
+#   "client_email": "skillful-radar-387911@appspot.gserviceaccount.com",
+#   "client_id": "105008149142400981020",
+#   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+#   "token_uri": "https://oauth2.googleapis.com/token",
+#   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+#   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/skillful-radar-387911%40appspot.gserviceaccount.com",
+#   "universe_domain": "googleapis.com"
+# })

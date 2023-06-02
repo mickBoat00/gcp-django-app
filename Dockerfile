@@ -13,3 +13,7 @@ EXPOSE 8080
 
 CMD ["gunicorn", "-b", ":8080", "main.wsgi"]
 
+RUN python manage.py makemigrations
+
+
+
