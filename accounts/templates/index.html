@@ -1,0 +1,6 @@
+
+{% load static %}
+<img src="{% static 'accounts/1.jpeg' %}" style="width:500px" alt=" image">
+<h1>hello we are here</h1>
+<p>Number of users {{ user_count }}</p>
+<a href={% url "second" %}>go to the second page</a>

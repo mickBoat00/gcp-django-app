@@ -1,0 +1,21 @@
+runtime: custom
+env: flex
+entrypoint: gunicorn -b :$PORT main.wsgi
+
+beta_settings:
+  cloud_sql_instances: skillful-radar-387911:europe-west2:main-db
+
+manual_scaling: 
+  instances: 1
+
+env_variables:
+  SECRET_KEY: "django-insecure-^n*e$!rizm=^odcbq%nce@%_@k2tt!j0dhvj%+bo&n2ql!2nbi"
+  SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: "493211936327-cd0scp38q47s7i644jf6f1ai773ae59c.apps.googleusercontent.com"
+  SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: "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"
+  DATABASE_HOST: "10.38.80.3"
+  DATABASE_NAME: "postgres" 
+  DATABASE_USER: "postgres"
+  DATABASE_PASSWORD: "tE.P/i*trUh/%J8("
+  DATABASE_PORT: "5432"
+
+
