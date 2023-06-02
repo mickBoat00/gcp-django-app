@@ -1,9 +1,5 @@
 runtime: custom
 env: flex
-entrypoint: gunicorn -b :$PORT main.wsgi
-
-beta_settings:
-  cloud_sql_instances: skillful-radar-387911:europe-west2:main-db
 
 manual_scaling: 
   instances: 1
@@ -15,7 +11,8 @@ env_variables:
   DATABASE_HOST: "10.38.80.3"
   DATABASE_NAME: "postgres" 
   DATABASE_USER: "postgres"
-  DATABASE_PASSWORD: "tE.P/i*trUh/%J8("
+  DATABASE_PASSWORD: "OBhx=>upP>JsLAhX"
   DATABASE_PORT: "5432"
 
-
+beta_settings:
+  cloud_sql_instances: skillful-radar-387911:europe-west2:main-db
