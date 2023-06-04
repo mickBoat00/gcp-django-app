@@ -1,11 +1,11 @@
 data "google_app_engine_default_service_account" "default" {
-  project = "skillful-radar-387911"
+  project = var.project_id
 }
 
 resource "google_app_engine_flexible_app_version" "myapp_v1" {
-  version_id = "v1"
+  version_id = var.project_id
   service    = "default"
-  project    = "skillful-radar-387911"
+  project    = var.project_id
   runtime    = "custom"
 
   entrypoint {
@@ -14,7 +14,7 @@ resource "google_app_engine_flexible_app_version" "myapp_v1" {
 
   deployment {
     container {
-      image = "europe-west1-docker.pkg.dev/skillful-radar-387911/my-docker-repo/app-engine-images:latest"
+      image = var.container_image
     }
   }
 
@@ -25,6 +25,8 @@ resource "google_app_engine_flexible_app_version" "myapp_v1" {
   readiness_check {
     path = "/"
   }
+
+
 
   env_variables = {
     port                             = "8080"
@@ -37,18 +39,6 @@ resource "google_app_engine_flexible_app_version" "myapp_v1" {
     DATABASE_PASSWORD                = "OBhx=>upP>JsLAhX"
     DATABASE_PORT                    = "5432"
   }
-
-  #   handlers {
-  #     url_regex        = ".*\\/my-path\\/*"
-  #     security_level   = "SECURE_ALWAYS"
-  #     login            = "LOGIN_REQUIRED"
-  #     auth_fail_action = "AUTH_FAIL_ACTION_REDIRECT"
-
-  #     static_files {
-  #       path              = "my-other-path"
-  #       upload_path_regex = ".*\\/my-path\\/*"
-  #     }
-  #   }
 
   automatic_scaling {
     cool_down_period = "120s"
@@ -65,13 +55,15 @@ resource "google_app_engine_flexible_app_version" "myapp_v1" {
 
 
 resource "google_app_engine_service_split_traffic" "liveapp" {
+  project = var.project_id
   service = google_app_engine_flexible_app_version.myapp_v1.service
 
   migrate_traffic = true
+
   split {
     shard_by = "IP"
     allocations = {
-      (google_app_engine_standard_app_version.liveapp_v1.version_id) = 1
+      (google_app_engine_flexible_app_version.myapp_v1.version_id) = 1
     }
   }
 }

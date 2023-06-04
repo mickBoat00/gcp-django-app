@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  pg_db:
+    image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.3.0
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+            python manage.py migrate &&
+            python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    depends_on:
+      - pg_db
+  pg_admin:
+    image: dpage/pgadmin4
+    ports:
+      - 8080:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    volumes:
+      - db-admin:/var/lib/pgadmin
+    depends_on:
+      - pg_db
+volumes:
+  app-data:
+    driver: local
+  db-data:
+    driver: local
+  db-admin:
+    driver: local 

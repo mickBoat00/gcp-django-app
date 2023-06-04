@@ -6,12 +6,11 @@ from rest_framework.response import Response
 
 
 def index(request):
-    # users = User.objects.count()
-    users = 10
+    users = User.objects.count()
     return render(request, 'index.html', {'user_count': users})
 
 def second(request):
-    # users = User.objects.count()
+    users = User.objects.count()
     users = 15
     return render(request, 'second.html', {'user_count': users})
 
